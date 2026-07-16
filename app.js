@@ -172,6 +172,134 @@ const typeColors = {
 
 const keyCardIds = ["film-complete", "annecy-submit", "cannes-submit", "san-sebastian-submit"];
 
+const productionBudget = {
+  source: "1Taste_budget_0217_mixed_JapanSide_EN.xlsx",
+  note:
+    "AI Know-how Provision is included under Co-production Potential. India Side Storyboard is excluded because pricing is TBD.",
+  summary: {
+    subtotal: 359779.36,
+    tax: 35977.94,
+    grandTotal: 395757.29,
+  },
+  categories: [
+    {
+      name: "Live Action Documentary Filming",
+      subtotal: 42953.05,
+      items: [
+        ["Camera man", 255.17, 20, 5103.33],
+        ["Line Producer", 170.11, 20, 3402.22],
+        ["Assistant Director", 255.17, 30, 7655],
+        ["Car Rental", 170.11, 20, 3402.22],
+        ["Misc. Expenses (5 ppl)", 127.58, 20, 2551.67],
+        ["Highway Tolls (Round Trip)", 255.17, 15, 3827.5],
+        ["Equipment Rental [Outsource]", 255.17, 20, 5103.33],
+        ["Accommodation (5 ppl)", 425.28, 20, 8505.56],
+        ["Camera Assistant / Sound", 170.11, 20, 3402.22],
+      ],
+    },
+    {
+      name: "Live Action Overseas Filming",
+      subtotal: 19988.05,
+      items: [
+        ["Overseas Camera Asst. / Sound", 680.44, 5, 3402.22],
+        ["Overseas Coordination Fee", 4252.78, 1, 4252.78],
+        ["Overseas Line Producer", 680.44, 5, 3402.22],
+        ["Overseas Cameraman", 680.44, 5, 3402.22],
+        ["Overseas Hotel (7 nights)", 2126.39, 1, 2126.39],
+        ["Airfare (Round Trip, Director)", 2126.39, 1, 2126.39],
+        ["Overseas Meals (10 days)", 255.17, 5, 1275.83],
+      ],
+    },
+    {
+      name: "Live Action AI Animation Studio Shoot for 14 days",
+      subtotal: 44058.86,
+      items: [
+        ["Lighting", 255.17, 14, 3572.35],
+        ["Assistant Director", 255.17, 14, 3572.35],
+        ["Line Producer / PM", 170.11, 14, 2381.56],
+        ["Camera man", 255.17, 14, 3572.35],
+        ["Studio Operator", 425.28, 14, 5953.89],
+        ["Studio Rental", 255.17, 14, 3572.35],
+        ["Cast (Approx. 5 people)", 1701.11, 5, 8505.56],
+        ["Costumes / Props / Wigs", 3402.21, 1, 3402.21],
+        ["Equipment Rental", 255.17, 14, 3572.35],
+        ["Misc. Expenses (Food for 15)", 425.28, 14, 5953.89],
+      ],
+    },
+    {
+      name: "Post-Production Japan Side",
+      subtotal: 24000.02,
+      items: [
+        ["Offline Editing (Japan Side)", 6666.67, 1, 6666.67],
+        ["English Subtitles (Japan Side)", 2666.67, 1, 2666.67],
+        ["DCP with English Subtitles (Japan Side)", 2666.67, 1, 2666.67],
+        ["Sound Design (Japan Side)", 2666.67, 1, 2666.67],
+        ["Music (Japan Side)", 2666.67, 1, 2666.67],
+        ["Compositing (Japan Side)", 6666.67, 1, 6666.67],
+      ],
+    },
+    {
+      name: "AI Rotoscoping Japan Side",
+      subtotal: 58987.79,
+      emphasis: true,
+      items: [
+        ["AI Background (Japan Side)", 127.58, 120, 15310],
+        ["AI Technical Director (Japan Side)", 8505.56, 1, 8505.56],
+        ["Animation Director (Japan Side)", 8505.56, 1, 8505.56],
+        ["Art Director", 6666.67, 1, 6666.67],
+        ["AIAI Agent / Rotoscoping Tool Development", 20000, 1, 20000],
+      ],
+    },
+    {
+      name: "General Production",
+      subtotal: 82527.8,
+      items: [
+        ["Lead Actor", 4252.78, 1, 4252.78],
+        ["Director", 12758.34, 1, 12758.34],
+        ["Producer", 17011.12, 1, 17011.12],
+        ["Production Producer", 4252.78, 1, 4252.78],
+        ["KOBO Voice Actor", 4252.78, 1, 4252.78],
+        ["Management Fee", 20000, 1, 20000],
+        ["MIFA Exhibition PR / Investment Activity (Past Two Editions)", 20000, 1, 20000],
+      ],
+    },
+    {
+      name: "Pre-production",
+      subtotal: 21263.9,
+      items: [
+        ["Scripts", 4252.78, 1, 4252.78],
+        ["Concept Art", 8505.56, 1, 8505.56],
+        ["Planning", 4252.78, 1, 4252.78],
+        ["Character Design", 4252.78, 1, 4252.78],
+      ],
+    },
+    {
+      name: "India Side Storyboard",
+      subtotal: 0,
+      items: [["Storyboard (India Side)", null, "TBD", null, "Price TBD; excluded from total"]],
+    },
+    {
+      name: "Co-production Potential",
+      subtotal: 65999.99,
+      emphasis: true,
+      items: [
+        ["MA Studio (Potential Co-Production)", 2000, 1, 2000],
+        ["Color Grading (Potential Co-Production)", 3333.33, 1, 3333.33],
+        ["AI Rotoscoping (Characters) (Potential Co-Production)", 100, 120, 12000],
+        ["AI Effect (Potential Co-Production)", 100, 120, 12000],
+        ["AI Animation Retouching (Potential Co-Production)", 3333.33, 1, 3333.33],
+        [
+          "AI Know-how Provision / Consulting",
+          33333.33,
+          1,
+          33333.33,
+          "JPY 5,000,000 reference",
+        ],
+      ],
+    },
+  ],
+};
+
 const monthNames = [
   "January",
   "February",
@@ -195,6 +323,9 @@ const ganttInner = document.querySelector("#ganttInner");
 const currentLine = document.querySelector("#currentLine");
 const detailPanel = document.querySelector("#detailPanel");
 const summaryCards = document.querySelector("#summaryCards");
+const budgetSummary = document.querySelector("#budgetSummary");
+const budgetBreakdown = document.querySelector("#budgetBreakdown");
+const budgetDetails = document.querySelector("#budgetDetails");
 
 const months = buildMonths(timeline.start, timeline.end);
 let selectedId = "film-complete";
@@ -203,6 +334,7 @@ document.documentElement.style.setProperty("--month-count", months.length);
 renderHeader();
 renderRows();
 renderSummaryCards();
+renderBudget();
 selectItem(selectedId);
 updateCurrentLine();
 
@@ -347,6 +479,140 @@ function renderSummaryCards() {
   });
 }
 
+function renderBudget() {
+  renderBudgetSummary();
+  renderBudgetBreakdown();
+  renderBudgetDetails();
+}
+
+function renderBudgetSummary() {
+  const knowHow = findBudgetItem("AI Know-how Provision / Consulting");
+  const cards = [
+    {
+      label: "Grand Total",
+      value: formatUsd(productionBudget.summary.grandTotal),
+      detail: "Including 10% tax",
+      featured: true,
+    },
+    {
+      label: "Subtotal",
+      value: formatUsd(productionBudget.summary.subtotal),
+      detail: "Before tax",
+    },
+    {
+      label: "Tax",
+      value: formatUsd(productionBudget.summary.tax),
+      detail: "10% estimate",
+    },
+    {
+      label: "AI Know-how / Consulting",
+      value: formatUsd(knowHow?.total),
+      detail: "JPY 5,000,000 reference",
+      accent: true,
+    },
+  ];
+
+  budgetSummary.innerHTML = "";
+  cards.forEach((card) => {
+    const article = document.createElement("article");
+    article.className = "budget-summary-card";
+    if (card.featured) article.classList.add("is-featured");
+    if (card.accent) article.classList.add("is-accent");
+
+    const label = document.createElement("span");
+    label.textContent = card.label;
+
+    const value = document.createElement("strong");
+    value.textContent = card.value;
+
+    const detail = document.createElement("small");
+    detail.textContent = card.detail;
+
+    article.append(label, value, detail);
+    budgetSummary.append(article);
+  });
+}
+
+function renderBudgetBreakdown() {
+  budgetBreakdown.innerHTML = "";
+
+  const heading = document.createElement("div");
+  heading.className = "budget-breakdown-heading";
+  heading.innerHTML = "<h3>Category Breakdown</h3><p>Subtotals before tax. Bars show share of the subtotal.</p>";
+  budgetBreakdown.append(heading);
+
+  const list = document.createElement("div");
+  list.className = "budget-category-list";
+
+  productionBudget.categories.forEach((category) => {
+    const share = productionBudget.summary.subtotal
+      ? Math.max((category.subtotal / productionBudget.summary.subtotal) * 100, category.subtotal ? 2 : 0)
+      : 0;
+    const row = document.createElement("article");
+    row.className = "budget-category-row";
+    if (category.emphasis) row.classList.add("is-emphasis");
+    row.style.setProperty("--bar-width", `${share}%`);
+
+    const name = document.createElement("strong");
+    name.textContent = category.name;
+
+    const meta = document.createElement("span");
+    meta.textContent = `${formatUsd(category.subtotal)} · ${share.toFixed(1)}%`;
+
+    const bar = document.createElement("div");
+    bar.className = "budget-bar";
+
+    row.append(name, meta, bar);
+    list.append(row);
+  });
+
+  budgetBreakdown.append(list);
+}
+
+function renderBudgetDetails() {
+  budgetDetails.innerHTML = "";
+
+  productionBudget.categories.forEach((category) => {
+    const section = document.createElement("details");
+    section.className = "budget-detail";
+    if (category.emphasis) section.open = true;
+
+    const summary = document.createElement("summary");
+    const name = document.createElement("span");
+    name.textContent = category.name;
+    const total = document.createElement("strong");
+    total.textContent = formatUsd(category.subtotal);
+    summary.append(name, total);
+
+    const tableWrap = document.createElement("div");
+    tableWrap.className = "budget-table-scroll";
+    const table = document.createElement("table");
+    table.className = "budget-table";
+
+    const thead = document.createElement("thead");
+    thead.innerHTML = "<tr><th>Item</th><th>Unit Price</th><th>Qty / Days</th><th>Total</th><th>Note</th></tr>";
+    table.append(thead);
+
+    const tbody = document.createElement("tbody");
+    category.items.forEach(([item, unit, quantity, totalValue, note]) => {
+      const row = document.createElement("tr");
+      if (item.includes("AI Know-how")) row.classList.add("is-highlight");
+      [item, formatUsd(unit), quantity, formatUsd(totalValue), note || ""].forEach((value, index) => {
+        const cell = document.createElement("td");
+        cell.textContent = String(value ?? "");
+        if (index > 0 && index < 4) cell.classList.add("num");
+        row.append(cell);
+      });
+      tbody.append(row);
+    });
+
+    table.append(tbody);
+    tableWrap.append(table);
+    section.append(summary, tableWrap);
+    budgetDetails.append(section);
+  });
+}
+
 function buildItemButton(item) {
   const startIndex = monthIndex(item.start);
   const endIndex = monthIndex(item.end);
@@ -442,6 +708,29 @@ function updateCurrentLine() {
 
   currentLine.hidden = false;
   currentLine.style.left = `${left}px`;
+}
+
+function findBudgetItem(itemName) {
+  for (const category of productionBudget.categories) {
+    const item = category.items.find(([name]) => name === itemName);
+    if (item) {
+      const [name, unit, quantity, total, note] = item;
+      return { name, unit, quantity, total, note, category: category.name };
+    }
+  }
+  return undefined;
+}
+
+function formatUsd(value) {
+  if (value === null || value === undefined || Number.isNaN(Number(value))) {
+    return "TBD";
+  }
+
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(value);
 }
 
 function monthIndex(monthKey) {
