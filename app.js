@@ -244,6 +244,10 @@ function renderHeader() {
     cell.dataset.monthIndex = index;
     cell.dataset.monthKey = month.key;
 
+    if (month.year >= 2027) {
+      cell.classList.add("is-future-year");
+    }
+
     if (isCurrentMonth(month)) {
       cell.classList.add("is-current-month");
     }
@@ -290,6 +294,9 @@ function renderRows() {
       cell.className = "grid-cell";
       cell.style.gridColumn = `${index + 2}`;
       cell.dataset.monthKey = month.key;
+      if (month.year >= 2027) {
+        cell.classList.add("is-future-year");
+      }
       if (isCurrentMonth(month)) {
         cell.classList.add("is-current-month");
       }
