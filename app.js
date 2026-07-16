@@ -300,6 +300,57 @@ const productionBudget = {
   ],
 };
 
+const septemberBudget = {
+  source: "2Taste_budget_0217_mixed_JapanSide_EN.xlsx",
+  note: "These three categories are required by September in order to proceed with the next production phase.",
+  summary: {
+    totalRequired: 123034.7,
+  },
+  categories: [
+    {
+      name: "Live Action Overseas Filming",
+      subtotal: 19988.05,
+      items: [
+        ["Overseas Camera Asst. / Sound", 680.44, 5, 3402.22],
+        ["Overseas Coordination Fee", 4252.78, 1, 4252.78],
+        ["Overseas Line Producer", 680.44, 5, 3402.22],
+        ["Overseas Cameraman", 680.44, 5, 3402.22],
+        ["Overseas Hotel (7 nights)", 2126.39, 1, 2126.39],
+        ["Airfare (Round Trip, Director)", 2126.39, 1, 2126.39],
+        ["Overseas Meals (10 days)", 255.17, 5, 1275.83],
+      ],
+    },
+    {
+      name: "Live Action AI Animation Studio Shoot for 14 days",
+      subtotal: 44058.86,
+      items: [
+        ["Lighting", 255.17, 14, 3572.35],
+        ["Assistant Director", 255.17, 14, 3572.35],
+        ["Line Producer / PM", 170.11, 14, 2381.56],
+        ["Camera man", 255.17, 14, 3572.35],
+        ["Studio Operator", 425.28, 14, 5953.89],
+        ["Studio Rental", 255.17, 14, 3572.35],
+        ["Cast (Approx. 5 people)", 1701.11, 5, 8505.56],
+        ["Costumes / Props / Wigs", 3402.21, 1, 3402.21],
+        ["Equipment Rental", 255.17, 14, 3572.35],
+        ["Misc. Expenses (Food for 15)", 425.28, 14, 5953.89],
+      ],
+    },
+    {
+      name: "AI Rotoscoping Japan Side",
+      subtotal: 58987.79,
+      emphasis: true,
+      items: [
+        ["AI Background (Japan Side)", 127.58, 120, 15310],
+        ["AI Technical Director (Japan Side)", 8505.56, 1, 8505.56],
+        ["Animation Director (Japan Side)", 8505.56, 1, 8505.56],
+        ["Art Director", 6666.67, 1, 6666.67],
+        ["AIAgent / Rotoscoping Tool Development", 20000, 1, 20000],
+      ],
+    },
+  ],
+};
+
 const monthNames = [
   "January",
   "February",
@@ -325,6 +376,8 @@ const detailPanel = document.querySelector("#detailPanel");
 const summaryCards = document.querySelector("#summaryCards");
 const budgetSummary = document.querySelector("#budgetSummary");
 const budgetDetails = document.querySelector("#budgetDetails");
+const septemberBudgetSummary = document.querySelector("#septemberBudgetSummary");
+const septemberBudgetDetails = document.querySelector("#septemberBudgetDetails");
 
 const months = buildMonths(timeline.start, timeline.end);
 let selectedId = "film-complete";
@@ -334,6 +387,7 @@ renderHeader();
 renderRows();
 renderSummaryCards();
 renderBudget();
+renderSeptemberBudget();
 selectItem(selectedId);
 updateCurrentLine();
 
@@ -483,6 +537,11 @@ function renderBudget() {
   renderBudgetDetails();
 }
 
+function renderSeptemberBudget() {
+  renderSeptemberBudgetSummary();
+  renderBudgetDetailsList(septemberBudgetDetails, septemberBudget.categories);
+}
+
 function renderBudgetSummary() {
   const knowHow = findBudgetItem("AI Know-how Provision / Consulting");
   const cards = [
@@ -532,9 +591,45 @@ function renderBudgetSummary() {
 }
 
 function renderBudgetDetails() {
-  budgetDetails.innerHTML = "";
+  renderBudgetDetailsList(budgetDetails, productionBudget.categories);
+}
 
-  productionBudget.categories.forEach((category) => {
+function renderSeptemberBudgetSummary() {
+  const cards = [
+    {
+      label: "Total Required by September",
+      value: formatUsd(septemberBudget.summary.totalRequired),
+      detail: "Three production categories",
+      featured: true,
+    },
+    {
+      label: "Overseas Filming",
+      value: formatUsd(septemberBudget.categories[0].subtotal),
+      detail: "Live action overseas shoot",
+    },
+    {
+      label: "AI Animation Shoot",
+      value: formatUsd(septemberBudget.categories[1].subtotal),
+      detail: "Studio shoot for 14 days",
+    },
+    {
+      label: "AI Rotoscoping",
+      value: formatUsd(septemberBudget.categories[2].subtotal),
+      detail: "Japan side production",
+      accent: true,
+    },
+  ];
+
+  septemberBudgetSummary.innerHTML = "";
+  cards.forEach((card) => {
+    septemberBudgetSummary.append(buildBudgetSummaryCard(card));
+  });
+}
+
+function renderBudgetDetailsList(container, categories) {
+  container.innerHTML = "";
+
+  categories.forEach((category) => {
     const section = document.createElement("details");
     section.className = "budget-detail";
     if (category.emphasis) section.open = true;
@@ -571,8 +666,27 @@ function renderBudgetDetails() {
     table.append(tbody);
     tableWrap.append(table);
     section.append(summary, tableWrap);
-    budgetDetails.append(section);
+    container.append(section);
   });
+}
+
+function buildBudgetSummaryCard(card) {
+  const article = document.createElement("article");
+  article.className = "budget-summary-card";
+  if (card.featured) article.classList.add("is-featured");
+  if (card.accent) article.classList.add("is-accent");
+
+  const label = document.createElement("span");
+  label.textContent = card.label;
+
+  const value = document.createElement("strong");
+  value.textContent = card.value;
+
+  const detail = document.createElement("small");
+  detail.textContent = card.detail;
+
+  article.append(label, value, detail);
+  return article;
 }
 
 function buildItemButton(item) {
