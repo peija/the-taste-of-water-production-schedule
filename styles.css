@@ -137,6 +137,28 @@ h1 {
   align-items: start;
 }
 
+.section-block {
+  padding: 18px;
+  border: 1px solid var(--section-border);
+  border-radius: var(--radius);
+  background: var(--section-bg);
+}
+
+.section-block-schedule {
+  --section-bg: #eef6ff;
+  --section-border: #c8ddf4;
+}
+
+.section-block-production-budget {
+  --section-bg: #f0f8f6;
+  --section-border: #bfded6;
+}
+
+.section-block-animation-budget {
+  --section-bg: #fff8ea;
+  --section-border: #efd7a4;
+}
+
 .chart-panel,
 .detail-panel,
 .summary-panel,
@@ -599,8 +621,7 @@ h1 {
 }
 
 .budget-section-secondary {
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--section-border);
 }
 
 .section-heading {
@@ -680,43 +701,6 @@ h1 {
 
 .september-budget-summary .budget-summary-card.is-featured strong {
   color: var(--milestone);
-}
-
-.september-budget-summary .budget-summary-card[class*="is-budget-tone-"],
-#septemberBudget .budget-detail[class*="is-budget-tone-"] {
-  border-color: var(--tone-border);
-  background: var(--tone-bg);
-}
-
-.september-budget-summary .budget-summary-card[class*="is-budget-tone-"] strong,
-#septemberBudget .budget-detail[class*="is-budget-tone-"] summary strong {
-  color: var(--tone-text);
-}
-
-#septemberBudget .budget-detail[class*="is-budget-tone-"] summary {
-  border-left: 5px solid var(--tone-border);
-  background: var(--tone-soft);
-}
-
-.is-budget-tone-overseas {
-  --tone-bg: #f1f7ff;
-  --tone-soft: #e6f1ff;
-  --tone-border: #8bb8e8;
-  --tone-text: #24558a;
-}
-
-.is-budget-tone-studio {
-  --tone-bg: #fff8ea;
-  --tone-soft: #fff0cf;
-  --tone-border: #e3b45d;
-  --tone-text: #8a5a16;
-}
-
-.is-budget-tone-rotoscoping {
-  --tone-bg: #effaf5;
-  --tone-soft: #e0f4ec;
-  --tone-border: #7fc4a5;
-  --tone-text: #126d56;
 }
 
 .budget-table-head h3 {

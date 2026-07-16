@@ -310,7 +310,6 @@ const septemberBudget = {
     {
       name: "Live Action Overseas Filming",
       subtotal: 19988.05,
-      tone: "overseas",
       items: [
         ["Overseas Camera Asst. / Sound", 680.44, 5, 3402.22],
         ["Overseas Coordination Fee", 4252.78, 1, 4252.78],
@@ -324,7 +323,6 @@ const septemberBudget = {
     {
       name: "Live Action AI Animation Studio Shoot for 14 days",
       subtotal: 44058.86,
-      tone: "studio",
       items: [
         ["Lighting", 255.17, 14, 3572.35],
         ["Assistant Director", 255.17, 14, 3572.35],
@@ -342,7 +340,6 @@ const septemberBudget = {
       name: "AI Rotoscoping Japan Side",
       subtotal: 58987.79,
       emphasis: true,
-      tone: "rotoscoping",
       items: [
         ["AI Background (Japan Side)", 127.58, 120, 15310],
         ["AI Technical Director (Japan Side)", 8505.56, 1, 8505.56],
@@ -609,20 +606,17 @@ function renderSeptemberBudgetSummary() {
       label: "Overseas Filming",
       value: formatUsd(septemberBudget.categories[0].subtotal),
       detail: "Live action overseas shoot",
-      tone: septemberBudget.categories[0].tone,
     },
     {
       label: "AI Animation Shoot",
       value: formatUsd(septemberBudget.categories[1].subtotal),
       detail: "Studio shoot for 14 days",
-      tone: septemberBudget.categories[1].tone,
     },
     {
       label: "AI Rotoscoping",
       value: formatUsd(septemberBudget.categories[2].subtotal),
       detail: "Japan side production",
       accent: true,
-      tone: septemberBudget.categories[2].tone,
     },
   ];
 
@@ -639,7 +633,6 @@ function renderBudgetDetailsList(container, categories) {
     const section = document.createElement("details");
     section.className = "budget-detail";
     if (category.emphasis) section.open = true;
-    if (category.tone) section.classList.add(`is-budget-tone-${category.tone}`);
 
     const summary = document.createElement("summary");
     const name = document.createElement("span");
@@ -682,7 +675,6 @@ function buildBudgetSummaryCard(card) {
   article.className = "budget-summary-card";
   if (card.featured) article.classList.add("is-featured");
   if (card.accent) article.classList.add("is-accent");
-  if (card.tone) article.classList.add(`is-budget-tone-${card.tone}`);
 
   const label = document.createElement("span");
   label.textContent = card.label;
