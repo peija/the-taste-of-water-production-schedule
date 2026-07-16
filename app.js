@@ -324,7 +324,6 @@ const currentLine = document.querySelector("#currentLine");
 const detailPanel = document.querySelector("#detailPanel");
 const summaryCards = document.querySelector("#summaryCards");
 const budgetSummary = document.querySelector("#budgetSummary");
-const budgetBreakdown = document.querySelector("#budgetBreakdown");
 const budgetDetails = document.querySelector("#budgetDetails");
 
 const months = buildMonths(timeline.start, timeline.end);
@@ -481,7 +480,6 @@ function renderSummaryCards() {
 
 function renderBudget() {
   renderBudgetSummary();
-  renderBudgetBreakdown();
   renderBudgetDetails();
 }
 
@@ -531,42 +529,6 @@ function renderBudgetSummary() {
     article.append(label, value, detail);
     budgetSummary.append(article);
   });
-}
-
-function renderBudgetBreakdown() {
-  budgetBreakdown.innerHTML = "";
-
-  const heading = document.createElement("div");
-  heading.className = "budget-breakdown-heading";
-  heading.innerHTML = "<h3>Category Breakdown</h3><p>Subtotals before tax. Bars show share of the subtotal.</p>";
-  budgetBreakdown.append(heading);
-
-  const list = document.createElement("div");
-  list.className = "budget-category-list";
-
-  productionBudget.categories.forEach((category) => {
-    const share = productionBudget.summary.subtotal
-      ? Math.max((category.subtotal / productionBudget.summary.subtotal) * 100, category.subtotal ? 2 : 0)
-      : 0;
-    const row = document.createElement("article");
-    row.className = "budget-category-row";
-    if (category.emphasis) row.classList.add("is-emphasis");
-    row.style.setProperty("--bar-width", `${share}%`);
-
-    const name = document.createElement("strong");
-    name.textContent = category.name;
-
-    const meta = document.createElement("span");
-    meta.textContent = `${formatUsd(category.subtotal)} · ${share.toFixed(1)}%`;
-
-    const bar = document.createElement("div");
-    bar.className = "budget-bar";
-
-    row.append(name, meta, bar);
-    list.append(row);
-  });
-
-  budgetBreakdown.append(list);
 }
 
 function renderBudgetDetails() {
