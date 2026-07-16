@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Taste of Water Production Schedule</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">Film Schedule</p>
+          <h1>The Taste of Water Production Schedule</h1>
+          <p class="period">July 2026 - September 2027</p>
+          <p class="updated">Last updated: July 16, 2026</p>
+        </div>
+        <div class="legend" aria-label="Legend">
+          <span class="legend-item"><span class="swatch production"></span>Production</span>
+          <span class="legend-item"><span class="swatch submission"></span>Festival Submission</span>
+          <span class="legend-item"><span class="swatch festival"></span>Festival Date</span>
+          <span class="legend-item"><span class="swatch milestone"></span>Milestone</span>
+        </div>
+      </header>
+
+      <section class="schedule-layout" aria-label="Production and festival Gantt chart">
+        <div class="chart-panel">
+          <div class="timeline-scroll" id="timelineScroll" tabindex="0">
+            <div class="gantt-inner" id="ganttInner">
+              <div class="current-line" id="currentLine" aria-hidden="true">
+                <span>Today</span>
+              </div>
+              <div class="gantt-header" id="monthHeader"></div>
+              <div class="gantt-body" id="ganttBody"></div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="side-panel" aria-label="Selected detail and key schedule cards">
+          <section class="detail-panel" id="detailPanel" aria-live="polite"></section>
+          <section class="summary-panel" aria-label="Key schedule cards">
+            <h2>Key Cards</h2>
+            <div class="summary-card-list" id="summaryCards"></div>
+          </section>
+        </aside>
+      </section>
+    </main>
+  </body>
+</html>
