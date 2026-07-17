@@ -384,7 +384,8 @@ const productionBudget = {
       subtotal: 39333.33,
       emphasis: true,
       updated: true,
-      changeNote: "Updated to requested co-production scope; AI Know-how moved out and Compositing moved in.",
+      changeNote:
+        "Updated to requested co-production scope; AI Know-how moved out and Compositing moved in. Zuperzuse will visit India and produce together with the Toonz team.",
       items: [
         ["MA Studio (Co-production)", 2000, 1, 2000, "Updated co-production scope"],
         ["Color Grading (Co-production)", 3333.33, 1, 3333.33, "Updated co-production scope"],
