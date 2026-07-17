@@ -34,10 +34,11 @@ const scheduleItems = [
     shortTitle: "DOC",
     kind: "Production",
     type: "production",
-    start: "2026-09",
+    start: "2026-08",
     end: "2026-09",
+    updated: true,
     detail:
-      "Capture additional documentary material in September so the documentary portion has the needed pickups before the final edit.",
+      "Capture additional documentary material across August and September so the documentary portion has the needed pickups before the final edit.",
     output: "Additional documentary footage",
   },
   {
@@ -572,6 +573,7 @@ function renderRows() {
   scheduleItems.forEach((item) => {
     const row = document.createElement("div");
     row.className = "gantt-row";
+    if (item.updated) row.classList.add("is-updated");
     row.dataset.itemId = item.id;
 
     const label = document.createElement("div");
@@ -581,11 +583,17 @@ function renderRows() {
     title.className = "row-title";
     title.textContent = item.title;
 
+    const updateBadge = document.createElement("span");
+    updateBadge.className = "row-update-badge";
+    updateBadge.textContent = "Updated";
+
     const kind = document.createElement("span");
     kind.className = "row-kind";
     kind.textContent = item.kind;
 
-    label.append(title, kind);
+    label.append(title);
+    if (item.updated) label.append(updateBadge);
+    label.append(kind);
     row.append(label);
 
     months.forEach((month, index) => {
@@ -855,6 +863,7 @@ function buildItemButton(item) {
   const button = document.createElement("button");
   button.type = "button";
   button.className = `task-button ${item.type}`;
+  if (item.updated) button.classList.add("is-updated");
   if (isSingleMonth && !isPointEvent && item.type !== "milestone") {
     button.classList.add("short-event");
   }
@@ -881,6 +890,13 @@ function buildItemButton(item) {
     text.className = "task-text";
     text.textContent = item.shortTitle || item.title;
     button.append(text);
+
+    if (item.updated) {
+      const badge = document.createElement("span");
+      badge.className = "task-update-badge";
+      badge.textContent = "UPD";
+      button.append(badge);
+    }
   }
 
   button.addEventListener("click", () => selectItem(item.id));
@@ -903,7 +919,7 @@ function selectItem(itemId) {
 
   detailPanel.style.setProperty("--detail-color", typeColors[item.type]);
   detailPanel.innerHTML = `
-    <p class="detail-kind">${item.kind}</p>
+    <p class="detail-kind">${item.kind}${item.updated ? " / Updated" : ""}</p>
     <h2>${item.title}</h2>
     <p class="detail-period">${formatPeriod(item.start, item.end)}</p>
     <p class="detail-body">${item.detail}</p>

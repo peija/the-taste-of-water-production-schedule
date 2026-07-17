@@ -271,6 +271,10 @@ h1 {
   color: var(--focus);
 }
 
+.gantt-row.is-updated .row-label {
+  background: linear-gradient(90deg, #fff4f6 88%, rgba(255, 244, 246, 0.88));
+}
+
 .row-label {
   position: sticky;
   left: 0;
@@ -298,6 +302,19 @@ h1 {
 
 .row-kind {
   display: none;
+}
+
+.row-update-badge {
+  width: max-content;
+  margin-top: 2px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--milestone);
+  color: #fff;
+  font-size: 0.55rem;
+  font-weight: 800;
+  line-height: 1.35;
+  text-transform: uppercase;
 }
 
 .grid-cell {
@@ -366,6 +383,24 @@ h1 {
 
 .task-button.production {
   background: var(--production);
+}
+
+.task-button.is-updated {
+  border-color: rgba(212, 61, 87, 0.62);
+  box-shadow:
+    0 0 0 2px rgba(212, 61, 87, 0.18),
+    0 8px 18px rgba(31, 42, 58, 0.14);
+}
+
+.task-update-badge {
+  flex: 0 0 auto;
+  padding: 1px 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--milestone);
+  font-size: 0.55rem;
+  font-weight: 900;
+  line-height: 1.35;
 }
 
 .task-button.submission {
