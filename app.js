@@ -147,6 +147,7 @@ const scheduleItems = [
     start: "2027-02",
     end: "2027-02",
     symbol: "★",
+    updated: true,
     detail: "The Berlin Film Festival takes place this month.",
     output: "Festival date",
   },

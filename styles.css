@@ -435,6 +435,26 @@ h1 {
   font-weight: 800;
 }
 
+.task-button.point-event.is-updated {
+  overflow: visible;
+}
+
+.task-button.point-event.is-updated::after {
+  content: "UPD";
+  position: absolute;
+  right: -16px;
+  top: 50%;
+  padding: 1px 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--milestone);
+  font-size: 0.55rem;
+  font-weight: 900;
+  line-height: 1.35;
+  transform: translateY(-50%);
+  box-shadow: 0 2px 8px rgba(31, 42, 58, 0.14);
+}
+
 .task-button.short-event {
   padding-inline: 5px;
   font-size: 0.66rem;
