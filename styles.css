@@ -694,6 +694,15 @@ h1 {
   background: #f7f4fb;
 }
 
+.budget-summary-card.is-changed {
+  border-color: rgba(212, 61, 87, 0.34);
+  background: #fff4f6;
+}
+
+.budget-summary-card.is-changed strong {
+  color: var(--milestone);
+}
+
 .september-budget-summary .budget-summary-card.is-featured {
   border-color: rgba(212, 61, 87, 0.3);
   background: #fff4f6;
@@ -751,6 +760,15 @@ h1 {
   box-shadow: 0 10px 24px rgba(31, 42, 58, 0.06);
 }
 
+.budget-detail.is-updated {
+  border-color: rgba(212, 61, 87, 0.34);
+  background: #fff9fa;
+}
+
+.budget-detail.is-updated summary {
+  background: #fff4f6;
+}
+
 .budget-detail summary {
   min-height: 48px;
   padding: 12px 14px;
@@ -762,6 +780,32 @@ h1 {
   color: #243041;
   font-size: 0.9rem;
   font-weight: 800;
+}
+
+.budget-detail-label {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.budget-detail-label em {
+  width: max-content;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--milestone);
+  color: #fff;
+  font-size: 0.66rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.budget-detail-label small {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1.35;
 }
 
 .budget-detail summary strong {
@@ -808,6 +852,51 @@ h1 {
   background: #f7f4fb;
   color: #382a4a;
   font-weight: 800;
+}
+
+.budget-table tr.is-changed td {
+  background: #fff4f6;
+  color: #4a2530;
+  font-weight: 800;
+}
+
+.old-budget-panel {
+  margin-top: 20px;
+  border: 1px dashed #aab3bf;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.old-budget-panel > summary {
+  min-height: 48px;
+  padding: 12px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #4b5563;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.old-budget-panel > summary strong {
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+.old-budget-panel[open] {
+  padding-bottom: 14px;
+}
+
+.old-budget-panel .budget-summary,
+.old-budget-panel .budget-table-panel {
+  margin-inline: 14px;
+}
+
+.old-budget-panel .budget-summary-card {
+  min-height: 92px;
+  box-shadow: none;
 }
 
 @media (max-width: 980px) {

@@ -172,7 +172,7 @@ const typeColors = {
 
 const keyCardIds = ["film-complete", "annecy-submit", "cannes-submit", "san-sebastian-submit"];
 
-const productionBudget = {
+const oldProductionBudget = {
   source: "1Taste_budget_0217_mixed_JapanSide_EN.xlsx",
   note:
     "AI Know-how Provision is included under Co-production Potential. India Side Storyboard is excluded because pricing is TBD.",
@@ -300,6 +300,103 @@ const productionBudget = {
   ],
 };
 
+const productionBudget = {
+  source: "Updated July 17, 2026",
+  note:
+    "Live Action Overseas Filming is reduced to JPY 500,000. AI Know-how Provision / Consulting is moved to AI Rotoscoping Japan Side. Co-production scope is updated as requested.",
+  summary: {
+    subtotal: 343124.64,
+    tax: 34312.46,
+    grandTotal: 377437.1,
+    oldGrandTotal: oldProductionBudget.summary.grandTotal,
+    deltaGrandTotal: -18320.19,
+  },
+  categories: [
+    oldProductionBudget.categories[0],
+    {
+      name: "Live Action Overseas Filming",
+      subtotal: 3333.33,
+      updated: true,
+      changeNote: "Reduced to JPY 500,000 from the previous overseas filming scope.",
+      items: [
+        [
+          "Live Action Overseas Filming (reduced scope)",
+          3333.33,
+          1,
+          3333.33,
+          "Updated: JPY 500,000 cap / reduced scope",
+        ],
+      ],
+    },
+    oldProductionBudget.categories[2],
+    {
+      name: "Post-Production Japan Side",
+      subtotal: 17333.35,
+      updated: true,
+      changeNote: "Compositing moved to Co-production.",
+      items: [
+        ["Offline Editing (Japan Side)", 6666.67, 1, 6666.67],
+        ["English Subtitles (Japan Side)", 2666.67, 1, 2666.67],
+        ["DCP with English Subtitles (Japan Side)", 2666.67, 1, 2666.67],
+        ["Sound Design (Japan Side)", 2666.67, 1, 2666.67],
+        ["Music (Japan Side)", 2666.67, 1, 2666.67],
+        ["Compositing (Japan Side)", 0, "Moved", 0, "Moved to Co-production"],
+      ],
+    },
+    {
+      name: "AI Rotoscoping Japan Side",
+      subtotal: 92321.12,
+      emphasis: true,
+      updated: true,
+      changeNote: "AI Know-how Provision / Consulting moved here from Co-production.",
+      items: [
+        ["AI Background (Japan Side)", 127.58, 120, 15310],
+        ["AI Technical Director (Japan Side)", 8505.56, 1, 8505.56],
+        ["Animation Director (Japan Side)", 8505.56, 1, 8505.56],
+        ["Art Director", 6666.67, 1, 6666.67],
+        ["AIAI Agent / Rotoscoping Tool Development", 20000, 1, 20000],
+        [
+          "AI Know-how Provision / Consulting",
+          33333.33,
+          1,
+          33333.33,
+          "Moved from Co-production / JPY 5,000,000 reference",
+        ],
+      ],
+    },
+    oldProductionBudget.categories[5],
+    oldProductionBudget.categories[6],
+    oldProductionBudget.categories[7],
+    {
+      name: "Co-production",
+      subtotal: 39333.33,
+      emphasis: true,
+      updated: true,
+      changeNote: "Updated to requested co-production scope; AI Know-how moved out and Compositing moved in.",
+      items: [
+        ["MA Studio (Potential Co-Production)", 2000, 1, 2000, "Updated co-production scope"],
+        ["Color Grading (Potential Co-Production)", 3333.33, 1, 3333.33, "Updated co-production scope"],
+        [
+          "AI Rotoscoping (Characters) (Potential Co-Production)",
+          100,
+          120,
+          12000,
+          "Updated co-production scope",
+        ],
+        ["AI Effect (Potential Co-Production)", 100, 120, 12000, "Updated co-production scope"],
+        [
+          "AI Animation Retouching (Potential Co-Production)",
+          3333.33,
+          1,
+          3333.33,
+          "Updated co-production scope",
+        ],
+        ["Compositing (Japan Side)", 6666.67, 1, 6666.67, "Moved from Post-Production Japan Side"],
+      ],
+    },
+  ],
+};
+
 const septemberBudget = {
   source: "2Taste_budget_0217_mixed_JapanSide_EN.xlsx",
   note: "These three categories are required by September in order to proceed with the next production phase.",
@@ -376,6 +473,8 @@ const detailPanel = document.querySelector("#detailPanel");
 const summaryCards = document.querySelector("#summaryCards");
 const budgetSummary = document.querySelector("#budgetSummary");
 const budgetDetails = document.querySelector("#budgetDetails");
+const oldBudgetSummary = document.querySelector("#oldBudgetSummary");
+const oldBudgetDetails = document.querySelector("#oldBudgetDetails");
 const septemberBudgetSummary = document.querySelector("#septemberBudgetSummary");
 const septemberBudgetDetails = document.querySelector("#septemberBudgetDetails");
 
@@ -535,6 +634,7 @@ function renderSummaryCards() {
 function renderBudget() {
   renderBudgetSummary();
   renderBudgetDetails();
+  renderOldBudget();
 }
 
 function renderSeptemberBudget() {
@@ -546,9 +646,9 @@ function renderBudgetSummary() {
   const knowHow = findBudgetItem("AI Know-how Provision / Consulting");
   const cards = [
     {
-      label: "Grand Total",
+      label: "Updated Grand Total",
       value: formatUsd(productionBudget.summary.grandTotal),
-      detail: "Including 10% tax",
+      detail: `Old: ${formatUsd(productionBudget.summary.oldGrandTotal)} / ${formatUsd(productionBudget.summary.deltaGrandTotal)}`,
       featured: true,
     },
     {
@@ -557,41 +657,60 @@ function renderBudgetSummary() {
       detail: "Before tax",
     },
     {
-      label: "Tax",
-      value: formatUsd(productionBudget.summary.tax),
-      detail: "10% estimate",
+      label: "Overseas Filming",
+      value: formatUsd(3333.33),
+      detail: "Reduced to JPY 500,000",
+      changed: true,
     },
     {
-      label: "AI Know-how / Consulting",
+      label: "AI Know-how Moved",
       value: formatUsd(knowHow?.total),
-      detail: "JPY 5,000,000 reference",
+      detail: "Now under AI Rotoscoping Japan Side",
       accent: true,
+      changed: true,
     },
   ];
 
   budgetSummary.innerHTML = "";
   cards.forEach((card) => {
-    const article = document.createElement("article");
-    article.className = "budget-summary-card";
-    if (card.featured) article.classList.add("is-featured");
-    if (card.accent) article.classList.add("is-accent");
-
-    const label = document.createElement("span");
-    label.textContent = card.label;
-
-    const value = document.createElement("strong");
-    value.textContent = card.value;
-
-    const detail = document.createElement("small");
-    detail.textContent = card.detail;
-
-    article.append(label, value, detail);
-    budgetSummary.append(article);
+    budgetSummary.append(buildBudgetSummaryCard(card));
   });
 }
 
 function renderBudgetDetails() {
   renderBudgetDetailsList(budgetDetails, productionBudget.categories);
+}
+
+function renderOldBudget() {
+  const oldKnowHow = findBudgetItem("AI Know-how Provision / Consulting", oldProductionBudget);
+  const cards = [
+    {
+      label: "Old Grand Total",
+      value: formatUsd(oldProductionBudget.summary.grandTotal),
+      detail: "Including 10% tax",
+    },
+    {
+      label: "Old Subtotal",
+      value: formatUsd(oldProductionBudget.summary.subtotal),
+      detail: "Before tax",
+    },
+    {
+      label: "Old Tax",
+      value: formatUsd(oldProductionBudget.summary.tax),
+      detail: "10% estimate",
+    },
+    {
+      label: "Old AI Know-how",
+      value: formatUsd(oldKnowHow?.total),
+      detail: "Previously under Co-production",
+    },
+  ];
+
+  oldBudgetSummary.innerHTML = "";
+  cards.forEach((card) => {
+    oldBudgetSummary.append(buildBudgetSummaryCard(card));
+  });
+  renderBudgetDetailsList(oldBudgetDetails, oldProductionBudget.categories);
 }
 
 function renderSeptemberBudgetSummary() {
@@ -633,13 +752,27 @@ function renderBudgetDetailsList(container, categories) {
     const section = document.createElement("details");
     section.className = "budget-detail";
     if (category.emphasis) section.open = true;
+    if (category.updated) section.classList.add("is-updated");
 
     const summary = document.createElement("summary");
+    const labelWrap = document.createElement("span");
+    labelWrap.className = "budget-detail-label";
     const name = document.createElement("span");
     name.textContent = category.name;
+    labelWrap.append(name);
+    if (category.updated) {
+      const badge = document.createElement("em");
+      badge.textContent = "Updated";
+      labelWrap.append(badge);
+    }
+    if (category.changeNote) {
+      const note = document.createElement("small");
+      note.textContent = category.changeNote;
+      labelWrap.append(note);
+    }
     const total = document.createElement("strong");
     total.textContent = formatUsd(category.subtotal);
-    summary.append(name, total);
+    summary.append(labelWrap, total);
 
     const tableWrap = document.createElement("div");
     tableWrap.className = "budget-table-scroll";
@@ -653,7 +786,11 @@ function renderBudgetDetailsList(container, categories) {
     const tbody = document.createElement("tbody");
     category.items.forEach(([item, unit, quantity, totalValue, note]) => {
       const row = document.createElement("tr");
+      const noteText = String(note || "");
       if (item.includes("AI Know-how")) row.classList.add("is-highlight");
+      if (/Updated|Moved|Reduced|JPY 500,000|co-production scope/i.test(noteText)) {
+        row.classList.add("is-changed");
+      }
       [item, formatUsd(unit), quantity, formatUsd(totalValue), note || ""].forEach((value, index) => {
         const cell = document.createElement("td");
         cell.textContent = String(value ?? "");
@@ -675,6 +812,7 @@ function buildBudgetSummaryCard(card) {
   article.className = "budget-summary-card";
   if (card.featured) article.classList.add("is-featured");
   if (card.accent) article.classList.add("is-accent");
+  if (card.changed) article.classList.add("is-changed");
 
   const label = document.createElement("span");
   label.textContent = card.label;
@@ -786,8 +924,8 @@ function updateCurrentLine() {
   currentLine.style.left = `${left}px`;
 }
 
-function findBudgetItem(itemName) {
-  for (const category of productionBudget.categories) {
+function findBudgetItem(itemName, budget = productionBudget) {
+  for (const category of budget.categories) {
     const item = category.items.find(([name]) => name === itemName);
     if (item) {
       const [name, unit, quantity, total, note] = item;
