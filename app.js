@@ -29,16 +29,28 @@ const scheduleItems = [
     output: "Animation scene script",
   },
   {
+    id: "documentary-additional-shoot",
+    title: "Documentary Additional Shoot",
+    shortTitle: "DOC",
+    kind: "Production",
+    type: "production",
+    start: "2026-09",
+    end: "2026-09",
+    detail:
+      "Capture additional documentary material in September so the documentary portion has the needed pickups before the final edit.",
+    output: "Additional documentary footage",
+  },
+  {
     id: "shooting",
-    title: "Shooting",
+    title: "AI Rotoscoping Shooting",
     shortTitle: "SH",
     kind: "Production",
     type: "production",
     start: "2026-09",
     end: "2026-09",
     detail:
-      "Shoot the animation reference scenes and additional documentary material in the same month to prepare assets for October onward.",
-    output: "Production footage",
+      "Shoot the animation reference scenes needed for AI rotoscoping so the October animation production can begin with usable motion material.",
+    output: "AI rotoscoping reference footage",
   },
   {
     id: "ai-animation",
