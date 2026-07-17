@@ -139,6 +139,18 @@ const scheduleItems = [
     output: "Submission complete",
   },
   {
+    id: "berlin-festival",
+    title: "Berlin Film Festival",
+    shortTitle: "BE",
+    kind: "Festival Date",
+    type: "festival",
+    start: "2027-02",
+    end: "2027-02",
+    symbol: "★",
+    detail: "The Berlin Film Festival takes place this month.",
+    output: "Festival date",
+  },
+  {
     id: "cannes-festival",
     title: "Cannes Festival",
     shortTitle: "CA",
