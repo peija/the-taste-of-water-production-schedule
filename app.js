@@ -401,20 +401,22 @@ const septemberBudget = {
   source: "2Taste_budget_0217_mixed_JapanSide_EN.xlsx",
   note: "These three categories are required by September in order to proceed with the next production phase.",
   summary: {
-    totalRequired: 123034.7,
+    totalRequired: 106379.98,
   },
   categories: [
     {
       name: "Live Action Overseas Filming",
-      subtotal: 19988.05,
+      subtotal: 3333.33,
+      updated: true,
+      changeNote: "Matched to the updated production budget: JPY 500,000 / $3,333.",
       items: [
-        ["Overseas Camera Asst. / Sound", 680.44, 5, 3402.22],
-        ["Overseas Coordination Fee", 4252.78, 1, 4252.78],
-        ["Overseas Line Producer", 680.44, 5, 3402.22],
-        ["Overseas Cameraman", 680.44, 5, 3402.22],
-        ["Overseas Hotel (7 nights)", 2126.39, 1, 2126.39],
-        ["Airfare (Round Trip, Director)", 2126.39, 1, 2126.39],
-        ["Overseas Meals (10 days)", 255.17, 5, 1275.83],
+        [
+          "Live Action Overseas Filming (reduced scope)",
+          3333.33,
+          1,
+          3333.33,
+          "Updated: aligned with production budget / JPY 500,000",
+        ],
       ],
     },
     {
