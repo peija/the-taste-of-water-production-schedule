@@ -22,6 +22,10 @@
     "Yu Gothic", Meiryo, sans-serif;
 }
 
+html[lang="ja"] {
+  --label-width: clamp(186px, 20vw, 270px);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -56,6 +60,49 @@ button {
   justify-content: space-between;
   gap: 18px;
   margin-bottom: 18px;
+}
+
+.header-copy {
+  min-width: 0;
+}
+
+.header-actions {
+  display: grid;
+  justify-items: end;
+  gap: 10px;
+}
+
+.language-tabs {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 8px 18px rgba(31, 42, 58, 0.08);
+}
+
+.language-tab {
+  min-height: 30px;
+  padding: 5px 12px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #526070;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.language-tab.is-active {
+  background: #1f2937;
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(31, 42, 58, 0.16);
+}
+
+.language-tab:focus-visible {
+  outline: 3px solid rgba(36, 88, 211, 0.3);
+  outline-offset: 2px;
 }
 
 .eyebrow {
@@ -440,7 +487,7 @@ h1 {
 }
 
 .task-button.point-event.is-updated::after {
-  content: "UPD";
+  content: attr(data-update-badge);
   position: absolute;
   right: -16px;
   top: 50%;
@@ -960,6 +1007,10 @@ h1 {
     flex-direction: column;
   }
 
+  .header-actions {
+    justify-items: start;
+  }
+
   .legend {
     justify-content: flex-start;
   }
@@ -982,6 +1033,10 @@ h1 {
     --label-width: 174px;
     --month-width: 58px;
     --row-height: 36px;
+  }
+
+  html[lang="ja"] {
+    --label-width: 192px;
   }
 
   .app-shell {

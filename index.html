@@ -10,26 +10,40 @@
   <body>
     <main class="app-shell">
       <header class="app-header">
-        <div>
-          <p class="eyebrow">Film Schedule</p>
-          <h1>The Taste of Water Production Schedule</h1>
-          <p class="period">July 2026 - September 2027</p>
-          <p class="updated">Last updated: July 17, 2026</p>
+        <div class="header-copy">
+          <p class="eyebrow" id="headerEyebrow">Film Schedule</p>
+          <h1 id="headerTitle">The Taste of Water Production Schedule</h1>
+          <p class="period" id="headerPeriod">July 2026 - September 2027</p>
+          <p class="updated" id="headerUpdated">Last updated: July 18, 2026</p>
         </div>
-        <div class="legend" aria-label="Legend">
-          <span class="legend-item"><span class="swatch production"></span>Production</span>
-          <span class="legend-item"><span class="swatch submission"></span>Festival Submission</span>
-          <span class="legend-item"><span class="swatch festival"></span>Festival Date</span>
-          <span class="legend-item"><span class="swatch milestone"></span>Milestone</span>
+        <div class="header-actions">
+          <div class="language-tabs" role="tablist" aria-label="Language">
+            <button class="language-tab is-active" type="button" role="tab" aria-selected="true" data-language="en">
+              English
+            </button>
+            <button class="language-tab" type="button" role="tab" aria-selected="false" data-language="ja">
+              Japanese
+            </button>
+          </div>
+          <div class="legend" id="legend" aria-label="Legend">
+            <span class="legend-item"><span class="swatch production"></span><span id="legendProduction">Production</span></span>
+            <span class="legend-item"><span class="swatch submission"></span><span id="legendSubmission">Festival Submission</span></span>
+            <span class="legend-item"><span class="swatch festival"></span><span id="legendFestival">Festival Date</span></span>
+            <span class="legend-item"><span class="swatch milestone"></span><span id="legendMilestone">Milestone</span></span>
+          </div>
         </div>
       </header>
 
-      <section class="schedule-layout section-block section-block-schedule" aria-label="Production and festival Gantt chart">
+      <section
+        class="schedule-layout section-block section-block-schedule"
+        id="scheduleSection"
+        aria-label="Production and festival Gantt chart"
+      >
         <div class="chart-panel">
           <div class="timeline-scroll" id="timelineScroll" tabindex="0">
             <div class="gantt-inner" id="ganttInner">
               <div class="current-line" id="currentLine" aria-hidden="true">
-                <span>Today</span>
+                <span id="currentLineLabel">Today</span>
               </div>
               <div class="gantt-header" id="monthHeader"></div>
               <div class="gantt-body" id="ganttBody"></div>
@@ -37,10 +51,10 @@
           </div>
         </div>
 
-        <aside class="side-panel" aria-label="Selected detail and key schedule cards">
+        <aside class="side-panel" id="sidePanel" aria-label="Selected detail and key schedule cards">
           <section class="detail-panel" id="detailPanel" aria-live="polite"></section>
-          <section class="summary-panel" aria-label="Key schedule cards">
-            <h2>Key Cards</h2>
+          <section class="summary-panel" id="summaryPanel" aria-label="Key schedule cards">
+            <h2 id="keyCardsTitle">Key Cards</h2>
             <div class="summary-card-list" id="summaryCards"></div>
           </section>
         </aside>
@@ -52,9 +66,9 @@
         aria-label="The Taste of Water production budget"
       >
         <div class="section-heading">
-          <p class="eyebrow">Production Budget</p>
-          <h2>The Taste of Water Production Budget</h2>
-          <p>
+          <p class="eyebrow" id="productionBudgetEyebrow">Production Budget</p>
+          <h2 id="productionBudgetTitle">The Taste of Water Production Budget</h2>
+          <p id="productionBudgetDescription">
             Updated production budget with revised co-production scope, reduced overseas
             filming, and AI know-how moved into the AI Japan side budget.
           </p>
@@ -63,26 +77,26 @@
         <div class="budget-table-panel">
           <div class="budget-table-head">
             <div>
-              <h3>Budget Detail</h3>
-              <p>Category subtotals and line items from the Excel estimate.</p>
+              <h3 id="productionBudgetDetailTitle">Budget Detail</h3>
+              <p id="productionBudgetDetailDescription">Category subtotals and line items from the Excel estimate.</p>
             </div>
-            <span>Updated: July 17, 2026</span>
+            <span id="productionBudgetUpdated">Updated: July 18, 2026</span>
           </div>
           <div class="budget-details" id="budgetDetails"></div>
         </div>
         <details class="old-budget-panel">
           <summary>
-            <span>Old Budget (before update)</span>
-            <strong>$395,757</strong>
+            <span id="oldBudgetSummaryTitle">Old Budget (before update)</span>
+            <strong id="oldBudgetGrandTotal">$395,757</strong>
           </summary>
           <div class="budget-summary old-budget-summary" id="oldBudgetSummary"></div>
           <div class="budget-table-panel">
             <div class="budget-table-head">
               <div>
-                <h3>Old Budget Detail</h3>
-                <p>Original estimate kept for reference.</p>
+                <h3 id="oldBudgetDetailTitle">Old Budget Detail</h3>
+                <p id="oldBudgetDetailDescription">Original estimate kept for reference.</p>
               </div>
-              <span>Source: 1Taste_budget_0217_mixed_JapanSide_EN.xlsx</span>
+              <span id="oldBudgetSource">Source: 1Taste_budget_0217_mixed_JapanSide_EN.xlsx</span>
             </div>
             <div class="budget-details" id="oldBudgetDetails"></div>
           </div>
@@ -95,9 +109,9 @@
         aria-label="Production budget required by September"
       >
         <div class="section-heading">
-          <p class="eyebrow">September Request</p>
-          <h2>Production Budget Required for AI Animation Filming</h2>
-          <p>
+          <p class="eyebrow" id="septemberBudgetEyebrow">September Request</p>
+          <h2 id="septemberBudgetTitle">Production Budget Required for AI Animation Filming</h2>
+          <p id="septemberBudgetDescription">
             These three categories are required by September in order to proceed
             with the next production phase.
           </p>
@@ -106,10 +120,10 @@
         <div class="budget-table-panel">
           <div class="budget-table-head">
             <div>
-              <h3>Budget Required by September</h3>
-              <p>Live action overseas filming, AI animation studio shoot, and AI rotoscoping.</p>
+              <h3 id="septemberBudgetDetailTitle">Budget Required by September</h3>
+              <p id="septemberBudgetDetailDescription">Live action overseas filming, AI animation studio shoot, and AI rotoscoping.</p>
             </div>
-            <span>Source: 2Taste_budget_0217_mixed_JapanSide_EN.xlsx</span>
+            <span id="septemberBudgetSource">Source: 2Taste_budget_0217_mixed_JapanSide_EN.xlsx</span>
           </div>
           <div class="budget-details" id="septemberBudgetDetails"></div>
         </div>
